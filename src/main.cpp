@@ -2,13 +2,15 @@
 #include <iostream>
 #include <utility>
 #include <vector>
+#include <fstream>
+#include <string>
 #include "wall.hpp"
 #include "ball.hpp"
 #include "paddle.hpp"
 
 using namespace std;
 
-int main() {
+int main(const int argc, char const *argv[]) {
   sf::RenderWindow window(sf::VideoMode(1280, 720), "WallBreak");
   window.setFramerateLimit(60);
   vector<vector<Wall>> walls(3,vector<Wall>(7));
@@ -17,6 +19,10 @@ int main() {
   bool lefttr=false;
   bool righttr=false;
 
+  if(1 < argc and string(argv[1]).substr(0,10) == "-pointress"){
+    cout<<"enable pointress"<<endl;
+    ball.ady = 0;
+  }
 
   for(int y=0;y<walls.size();y++){
     for(int x=0;x<walls[0].size();x++){
